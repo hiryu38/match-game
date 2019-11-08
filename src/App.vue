@@ -87,8 +87,9 @@ export default {
         if (this.player1Turn) {
           this.fields[idx].figure = this.player1.figure;
           this.player1Turn = false;
+          this.checkGameOver();
         }
-        this.checkGameOver();
+
       }
     },
     resetField() {
@@ -183,7 +184,7 @@ export default {
   },
   watch: {
     player1Turn(value) {
-      if (!value) {
+      if (!this.gameOver && !value) {
         this.cpuTurn();
         this.player1Turn = true;
         this.checkGameOver();
